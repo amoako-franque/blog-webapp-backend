@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser")
 const webDb = require("./config/db")
 const rateLimit = require("express-rate-limit")
 const xssClean = require("xss-clean")
+const corsOptions = require("./config/corsOptions")
 require("dotenv").config()
 const app = express()
 
@@ -13,7 +14,7 @@ const app = express()
 webDb()
 
 //middleware
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(morgan("dev"))
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
