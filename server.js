@@ -37,10 +37,10 @@ const limiter = rateLimit({
 
 app.use(limiter)
 
-app.get("/api-test", (req, res) => res.json({ time: Date().toString() }))
+app.get("/", (req, res) => res.json({ time: Date().toString() }))
 
 fs.readdirSync("./routes").map((route) =>
-  app.use("/api/v1/", require("./routes/" + route))
+  app.use("/", require("./routes/" + route))
 )
 
 const port = process.env.PORT || 8080
